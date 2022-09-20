@@ -1,32 +1,29 @@
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class sortQuick {
-	public static void qsort(int arr[], int lb, int ub) {
-		if (lb < ub) {
-			int pidx = partition(arr, lb, ub);
-			qsort(arr, lb, pidx - 1);
-			qsort(arr, pidx + 1, ub);
+	public static void qsort(int[] A, int lb, int ub) {
+		if (lb >= ub) {
+			return;
 		}
-
-	}
-
-	public static int partition(int arr[], int lb, int ub) {
-		int pivot = arr[ub];
-		int i = lb - 1;
-		for (int j = lb; j < ub; j++) {
-			if (arr[j] < pivot) {
+		int pivot = A[ub];
+		int i = lb, j = ub;
+		while (i <= j) {
+			while (A[i] < pivot) {
 				i++;
-				int temp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = temp;
+			}
+			while (A[j] > pivot) {
+				j--;
+			}
+			if (i <= j) {
+				int temp = A[i];
+				A[i] = A[j];
+				A[j] = temp;
+				i++;
+				j--;
 			}
 		}
-		i++;
-		int temp = arr[i];
-		arr[i] = pivot;
-		arr[ub] = temp;
-		return i;
+		qsort(A, lb, j);
+		qsort(A, i, ub);
 	}
 
 	public static void main(String[] args) {
@@ -43,9 +40,7 @@ public class sortQuick {
 		for (int i = 0; i < len; i++) {
 			System.out.print(arr[i] + " ");
 		}
-
 		qsort(arr, 0, arr.length - 1);
-
 		System.out.println("\narary after sort:");
 		for (int i = 0; i < len; i++) {
 			System.out.print(arr[i] + " ");
