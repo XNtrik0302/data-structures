@@ -5,6 +5,7 @@ public class sortQuick {
 		if (lb >= ub) {
 			return;
 		}
+		//any element can be take as pivot
 		int pivot = A[ub];
 		int i = lb, j = ub;
 		while (i <= j) {
@@ -40,7 +41,7 @@ public class sortQuick {
 		for (int i = 0; i < len; i++) {
 			System.out.print(arr[i] + " ");
 		}
-		qsort(arr, 0, arr.length - 1);
+		qsort(arr, 0, len - 1);
 		System.out.println("\narary after sort:");
 		for (int i = 0; i < len; i++) {
 			System.out.print(arr[i] + " ");
