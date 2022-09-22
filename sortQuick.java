@@ -1,31 +1,32 @@
 import java.util.*;
 
 public class sortQuick {
-	public static void qsort(int[] A, int lb, int ub) {
-		if (lb >= ub) {
-			return;
-		}
-		//any element can be take as pivot
-		int pivot = A[ub];
-		int i = lb, j = ub;
-		while (i <= j) {
-			while (A[i] < pivot) {
-				i++;
-			}
-			while (A[j] > pivot) {
-				j--;
-			}
-			if (i <= j) {
-				int temp = A[i];
-				A[i] = A[j];
-				A[j] = temp;
-				i++;
-				j--;
-			}
-		}
-		qsort(A, lb, j);
-		qsort(A, i, ub);
-	}
+	public static void qsort(int A[], int lb, int ub) {
+        if (lb < ub) {
+            int key = A[lb];
+            int i = lb, j = ub + 1;
+            while (i < j) {
+                i++;
+                j--;
+                while (A[i] < key) {
+                    i++;
+                }
+                while (A[j] > key) {
+                    j--;
+                }
+                if (i < j) {
+                    int temp = A[i];
+                    A[i] = A[j];
+                    A[j] = temp;
+                }
+            }
+            int temp = A[lb];
+            A[lb] = A[j];
+            A[j] = temp;
+            qsort(A, lb, j - 1);
+            qsort(A, j + 1, ub);
+        }
+    }
 
 	public static void main(String[] args) {
 		Random rand = new Random();
